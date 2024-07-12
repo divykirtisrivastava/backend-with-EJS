@@ -7,5 +7,26 @@
 </head>
 <body>
     <h1>Client data</h1>
+
+    <table border="2">
+        <thead>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Age</th>
+        </thead>
+        <tbody>
+            <% data.forEach((data)=>{ %>
+                <tr>
+                    <td><%= data.id %></td>
+                    <td><%= data.name %></td>
+                    <td><%= data.email %></td>
+                    <td><%= data.age %></td>
+                </tr>
+
+          <%  }) %> 
+           
+        </tbody>
+    </table>
 </body>
 </html>

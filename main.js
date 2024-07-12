@@ -41,14 +41,24 @@ app.post('/saveClient', (req, res)=>{
     db.query(sql, [value], (err, result)=>{
         if(err) throw err
         else{
-            res.send("data submited")
+            res.redirect("/clientdata")
         }
     })
     
 })
 
-app.get('/data', (req, res)=>{
-    res.render('ClientData')
+
+app.get('/clientdata', (req, res)=>{
+
+    let sql = 'select * from ejs'
+
+    db.query(sql, (err, result)=>{
+        if(err) throw err
+        else{
+            console.log(result)
+            res.render('ClientData', {data: result})
+        }
+    })
 })
 
 app.listen(3000, ()=>{
