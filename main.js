@@ -6,6 +6,7 @@ let app = express()
 
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
+app.use(express.static('assets'))
 app.use(bodyParser.urlencoded({extended: true}))
 
 
@@ -30,7 +31,7 @@ app.get('/', (req, res)=>{
     res.render('home')
 })
 
-app.post('/saveClient', (req, res)=>{
+app.post('/', (req, res)=>{
     let name = req.body.name
     let email = req.body.email
     let age = req.body.age
