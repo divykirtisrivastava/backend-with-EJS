@@ -8,98 +8,33 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <section class="mx-auto w-full max-w-7xl px-4 py-4">
-        <div class="flex flex-col space-y-4 md:flex-row md:items-center md:justify-between md:space-y-0">
-          <div>
-            <h2 class="text-lg font-semibold">Employees</h2>
-            <p class="mt-1 text-sm text-gray-700">
-              This is a list of all employees. You can add new employees, edit or
-              delete existing ones.
-            </p>
-          </div>
-          <div>
-            <a
-              href="/"
-              class="rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-            >
-              Add new employee
-            </a>
-          </div>
-        </div>
-        <div class="mt-6 flex flex-col">
-          <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-            <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-              <div class="overflow-hidden border border-gray-200 md:rounded-lg">
-                <table class="min-w-full divide-y divide-gray-200">
-                  <thead class="bg-gray-50">
-                    <tr>
-                      <th
-                        scope="col"
-                        class="px-4 py-3.5 text-left text-sm font-normal text-gray-700"
-                      >
-                        <span>Name</span>
-                      </th>
-                      <th
-                        scope="col"
-                        class="px-12 py-3.5 text-left text-sm font-normal text-gray-700"
-                      >
-                        Email
-                      </th>
-                      <th
-                        scope="col"
-                        class="px-4 py-3.5 text-left text-sm font-normal text-gray-700"
-                      >
-                        Age
-                      </th>
-                      
-                      <th scope="col" class="relative px-4 py-3.5">
-                        <span class="sr-only">Edit</span>
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody class="divide-y divide-gray-200 bg-white">
-                   
-                    <% data.forEach((data)=>{ %>
+  <div class="flex justify-evenly mt-[30px] flex-wrap">
 
-                        <tr>
-                            <td class="whitespace-nowrap px-4 py-4">
-                              <div class="flex items-center">
-                           
-                                <div class="ml-4">
-                                  <div class="text-sm font-medium text-gray-900">
-                                    <%= data.name %>
-                                  </div>
-                                 
-                              </div>
-                            </td>
-                            <td class="whitespace-nowrap px-12 py-4">
-                              <div class="text-sm text-gray-900 ">                                    <%= data.email %>
-                              </div>
-                             
-                            </td>
-                            <td class="whitespace-nowrap px-4 py-4">
-                              <span class="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800">
-                                <%= data.age %>
-                               
-                              </span>
-                            </td>
-                           
-                            <td class="whitespace-nowrap px-4 py-4 text-right text-sm font-medium">
-                              <a href="#" class="text-gray-700">
-                                Edit
-                              </a>
-                            </td>
-                          </tr>
+    <% data.map((data)=>{ %>
 
-                 <%   }) %>
-                 
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
+      <div class="relative h-[400px] w-[300px] rounded-md">
+        <img
+          src="<%= data.image %>"
+          alt="AirMax Pro"
+          class="z-0 h-full w-full rounded-md object-cover"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent"></div>
+        <div class="absolute bottom-4 left-4 text-left">
+          <h1 class="text-lg font-semibold text-white">Name:-
+             <%= data.name %></h1>
+          <p class="mt-2 text-sm text-gray-300">
+           Email:- <%= data.email %>
+          </p>
+          <button class="mt-2 inline-flex cursor-pointer items-center text-sm font-semibold text-white">
+            View Profile →
+          </button>
         </div>
-      </section>
+      </div>
+
+  <%  }) %>
+   
+  </div>
+  
       
 </body>
 </html>

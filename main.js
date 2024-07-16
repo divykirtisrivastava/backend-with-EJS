@@ -1,5 +1,7 @@
 const express = require('express')
 const mysql = require('mysql')
+const multer = require('multer')
+const path = require('path')
 const bodyParser = require('body-parser')
 
 let app = express()
@@ -7,6 +9,7 @@ let app = express()
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
 app.use(express.static('assets'))
+app.use(express.static('uploads'))
 app.use(bodyParser.urlencoded({extended: true}))
 
 
@@ -25,19 +28,31 @@ db.connect((err)=>{
 })
 
 
+// multer setup
+
+let storage = multer.diskStorage({
+    destination: './uploads',
+    filename: function(req, file, cb){
+        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
+    }
+})
+
+let upload  =  multer({storage: storage})
+
 
 
 app.get('/', (req, res)=>{
     res.render('home')
 })
 
-app.post('/', (req, res)=>{
+app.post('/', upload.single('image'), (req, res)=>{
     let name = req.body.name
     let email = req.body.email
     let age = req.body.age
+    let image = req.file.filename
 
-    let value = [[name, email, age]]
-    let sql = "insert into ejs(name, email, age) values ?"
+    let value = [[name, email, age, image]]
+    let sql = "insert into ejs(name, email, age, image) values ?"
 
     db.query(sql, [value], (err, result)=>{
         if(err) throw err
